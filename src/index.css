@@ -10,37 +10,45 @@
     --font-mona: 'Mona Sans', system-ui, sans-serif;
     --font-ibm-plex: 'IBM Plex Sans', system-ui, sans-serif;
     --font-manrope: 'Manrope', system-ui, sans-serif;
+
+    /* Theme tokens */
+    --color-bg-0: #070A12;
+    --color-bg-1: #0A0F1E;
+    --color-neon: #19FBFF;
+    --color-neon-2: #3BA6FF;
+    --shadow-neon: 0 0 24px rgba(0,255,255,0.35);
+    --radius-md: 12px;
+    --grid-gap: 1.5rem;
   }
 
-  html {
-    font-family: var(--font-sans);
-    font-feature-settings: "rlig" 1, "calt" 1;
-  }
+  html { font-family: var(--font-sans); font-feature-settings: "rlig" 1, "calt" 1; }
+  body { @apply antialiased bg-[color:var(--color-bg-0)] text-white; }
+}
 
-  body {
-    @apply antialiased;
+/* Global component tokens */
+@layer components {
+  .text-neon { color: var(--color-neon); }
+  .bg-neon { background-color: var(--color-neon); }
+  .ring-neon { --tw-ring-color: var(--color-neon); }
+  .shadow-neon { box-shadow: var(--shadow-neon); }
+
+  .card {
+    @apply bg-white/5 border border-white/10 rounded-xl;
+  }
+  .hud-line { background: linear-gradient(90deg, rgba(25,251,255,0.0), rgba(25,251,255,0.45), rgba(25,251,255,0.0)); height:1px; }
+
+  /* Button base to ensure keyboard focus visibility */
+  .btn-focus {
+    @apply focus:outline-none focus-visible:ring-2 focus-visible:ring-neon focus-visible:ring-offset-2 focus-visible:ring-offset-transparent;
   }
 }
 
-/* Custom utility classes for shadcn/ui patterns */
+/* Micro-animations */
 @layer utilities {
-  .animate-in {
-    animation-name: animateIn;
-    animation-duration: 350ms;
-    --tw-enter-opacity: initial;
-    --tw-enter-scale: initial;
-    --tw-enter-rotate: initial;
-    --tw-enter-translate-x: initial;
-    --tw-enter-translate-y: initial;
-  }
-
-  .animate-out {
-    animation-name: animateOut;
-    animation-duration: 350ms;
-    --tw-exit-opacity: initial;
-    --tw-exit-scale: initial;
-    --tw-exit-rotate: initial;
-    --tw-exit-translate-x: initial;
-    --tw-exit-translate-y: initial;
-  }
+  .hover-glow:hover { text-shadow: 0 0 8px rgba(25,251,255,0.8); }
+  .fade-in { animation: fadeIn 600ms ease forwards; }
+  .parallax-wrap { perspective: 1200px; }
+  .parallax-layer { transform-style: preserve-3d; }
 }
+
+@keyframes fadeIn { from {opacity:0; transform: translateY(8px);} to {opacity:1; transform: translateY(0);} }

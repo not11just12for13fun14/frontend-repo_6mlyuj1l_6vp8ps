@@ -1,28 +1,28 @@
-import { useState } from 'react'
+import React from 'react'
+import Layout from './components/Layout'
+import Hero from './components/Hero'
+import { Section } from './components/Sections'
+import { TechCard, CardGrid } from './components/Cards'
 
-function App() {
-  const [count, setCount] = useState(0)
-
+function HomePage(){
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-50 to-blue-50 flex items-center justify-center">
-      <div className="bg-white p-8 rounded-lg shadow-lg">
-        <h1 className="text-3xl font-bold text-gray-800 mb-4">
-          Vibe Coding Platform
-        </h1>
-        <p className="text-gray-600 mb-6">
-          Your AI-powered development environment
-        </p>
-        <div className="text-center">
-          <button
-            onClick={() => setCount(count + 1)}
-            className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded"
-          >
-            Count is {count}
-          </button>
-        </div>
-      </div>
-    </div>
+    <>
+      <Hero />
+      <Section kicker="Flagship Systems" title="Architectures that bend the flight equation">
+        <CardGrid>
+          <TechCard title="Quantum Drive Engine" stage="Field-Tested" summary="A phase-coherent thrust core that modulates vacuum polarization to generate non-reactive impulse without propellant mass exchange." />
+          <TechCard title="Zero-Gravity Ion Shaper" stage="Beta" summary="Electrostatic topology controller that sculpts charged particle streams into laminar thrust filaments for micro-g maneuvers." />
+          <TechCard title="Tachyon Flight Controller" stage="Prototype" summary="Predictive control MCU leveraging subspace latency maps to pre-empt turbulence vectors before they manifest in classical space." />
+        </CardGrid>
+      </Section>
+    </>
   )
 }
 
-export default App
+export default function App(){
+  return (
+    <Layout>
+      <HomePage />
+    </Layout>
+  )
+}
